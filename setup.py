@@ -1,34 +1,34 @@
-from typing import List, Text
-from distutils.core import setup
+from setuptools import setup, find_packages
 
-with open("README.md") as readme_file:
-    readme: Text = readme_file.read()
-
-requirements: List[Text] = []
-
-test_requirements: List[Text] = ["pre-commit"]
+def readme():
+    with open("README.md") as f:
+        return f.read()
+    
+def requirements():
+    with open("requirements.txt") as f:
+        return f.read()
 
 setup(
-    name = "geohash-generator", # How you named your package folder (MyLib)
-    packages = ["geohash-generator"], # Chose the same as "name"
-    version = "0.0.1", # Start with a small number and increase it with every change you make
-    license="MIT", # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-    description = "Python wrapper for indodax.com API", # Give a short description about your library
-    author = "Faisal Malik Widya Prasetya", # Type in your name
-    author_email = "faisalmalikwidyaprasetya@gmail.com", # Type in your E-Mail
-    url = "https://github.com/MasiCal354/geohash-generator", # Provide either the link to your github or to your website
-    download_url = "https://github.com/MasiCal354/geohash-generator/archive/v_01.tar.gz", # I explain this later on
-    keywords = ["indodax", "vipbtc", "api"], # Keywords that define your package best
-    install_requires=[ # I get to this in a second
-        "requests",
-        "pandas"
-    ],
+    name = "geohash-generator",
+    packages=find_packages(),
+    version = "0.0.1",
+    license="MIT",
+    description="Geohash Generator is a python module that provides function for converting geojson and shapefile to geohash.",
+    long_description=readme(),
+    long_description_content_type="text/markdown",
+    author = "Helfi Pangestu",
+    author_email = "hellfipangestu@gmail.com",
+    url = "https://github.com/Helfi-Pangestu-Labs/geohash-generator/",
+    download_url = "https://github.com/Helfi-Pangestu-Labs/geohash-generator/archive/main.tar.gz",
+    keywords = ["geohash", "geojson", "convert", "geohash-generator", "shapefile converter", "geojson converter"], # Keywords that define your package best
+    install_requires=requirements(),
     classifiers=[
-        "Development Status :: 3 - Alpha", # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
-        "Intended Audience :: Developers", # Define that your audience are developers
+        "Development Status :: 5 - Production/Stable", # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+        "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
-        "License :: OSI Approved :: MIT License", # Again, pick a license
-        "Programming Language :: Python :: 3", # Specify which pyhton versions that you want to support
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
