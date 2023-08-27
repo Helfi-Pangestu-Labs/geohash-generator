@@ -1,0 +1,37 @@
+name: Upload to PyPi
+on:
+  push:
+    branches:
+      - main
+jobs:
+  stage:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - name: Install dependencies
+        run: |
+          cd ${{ github.workspace }}
+          python -m pip install --upgrade pip --no-cache-dir
+          pip install -r requirements.txt --no-cache-dir
+          pip install -r requirements-dev.txt --no-cache-dir
+      - name: Run Pre-Commit
+        run: pre-commit run --all-files
+      # - name: Run Unittest
+      #   run: python -m unittest discover tests -v -f
+      # - name: Create a Source Archive and a Wheel
+      #   run: python setup.py sdist bdist_wheel
+      # - name: Publish a Python distribution to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     user: __token__
+      #     password: ${{ secrets.PYPI_API_TOKEN }}
