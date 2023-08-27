@@ -41,7 +41,6 @@ test_scripts_geohash_pyflakes:
 	pyflakes .
 
 test_scripts_geohash_pytest_unit:
-	cd geohash_generator && \
 	export PYTHONPATH=: && \
 	coverage run -m pytest --cov-config=./.coveragerc --cov-report term-missing --cov=config -vv ./tests/unit
 

@@ -1,4 +1,4 @@
-from config import GeoHashConfig
+from geohash_generator.config import GeoHashConfig
 from json import JSONEncoder
 from polygon_geohasher.polygon_geohasher import polygon_to_geohashes
 from geohashlite import GeoJsonHasher

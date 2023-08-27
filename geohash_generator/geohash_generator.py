@@ -1,4 +1,4 @@
-from config import GeoHashConfig, GeoHashConfigLoader
+from geohash_generator.config import GeoHashConfig, GeoHashConfigLoader
 from geohash_util import GeohashUtil
 import datetime
 import click
