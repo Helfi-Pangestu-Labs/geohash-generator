@@ -28,12 +28,11 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           python -m pip install --upgrade pip --no-cache-dir
-          pip install -r requirements.txt --no-cache-dir
+          make install_dependency
       - name: Create a Source Archive and a Wheel
         run: python setup.py sdist bdist_wheel
       - name: Publish a Python distribution to PyPI
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          twine upload dist/*
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
