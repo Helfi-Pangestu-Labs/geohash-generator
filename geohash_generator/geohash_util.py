@@ -77,11 +77,11 @@ class GeohashUtil:
         shape_records = shapefile_reader.shapeRecords()  # Get all shape records
         
         result = {
-            'shape_records': shape_records,
+            'records': shape_records,
             'num_records': len(shape_records),
             'shape_type': shapefile_reader.shapeTypeName,
         }
-        
+
         return result
 
     # Reads in geojson file and returns geojson features and the length of the shape

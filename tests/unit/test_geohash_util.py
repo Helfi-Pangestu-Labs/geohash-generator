@@ -17,7 +17,7 @@ class TestConvertGeohashToGeojson(unittest.TestCase):
         
         # Call the method being tested
         geohashes = GeohashUtil.read_geohashes(source_path)
-        
+
         # Define the expected geohashes based on the content of your file
         expected_geohashes = ['djjcpxj', 'djjcrjb', 'djjcqc']  # Replace with actual geohashes
         
