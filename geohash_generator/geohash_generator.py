@@ -1,5 +1,5 @@
 from geohash_generator.config import GeoHashConfig, GeoHashConfigLoader
-from geohash_util import GeohashUtil
+from geohash_generator.geohash_util import GeohashUtil
 import datetime
 
 def generate(
