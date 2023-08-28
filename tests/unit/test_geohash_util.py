@@ -1,11 +1,19 @@
 import unittest
 from geohash_generator.geohash_util import GeohashUtil
+import os
 
 class TestConvertGeohashToGeojson(unittest.TestCase):
 
     def test_read_geohashes(self):
         # Replace with the actual path to your geohash file
-        source_path = "/Applications/Works/geohash-generator/examples/geohash_example.txt"
+        this_script_dir = os.path.dirname(os.path.realpath(__file__))
+        source_path = os.path.join(
+               this_script_dir,
+               '..',
+               '..',
+                'examples',
+                'geohash_example.txt'
+            )
         
         # Call the method being tested
         geohashes = GeohashUtil.read_geohashes(source_path)
