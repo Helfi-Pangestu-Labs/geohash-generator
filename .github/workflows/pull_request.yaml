@@ -1,0 +1,24 @@
+name: Pull Request Workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pull_request:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: install library
+        run: make install_dependency
+      - name: run testing
+        run: make test

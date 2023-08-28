@@ -1,9 +1,8 @@
-name: Publish Workflow
-
+name: Main Workflow
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -11,12 +10,12 @@ concurrency:
 
 jobs:
   stage:
-      strategy:
-        matrix:
-          os: [ubuntu-latest]
-          python-version: [3.9]
-      runs-on: ${{ matrix.os }}
-      steps:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+    runs-on: ${{ matrix.os }}
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -29,11 +28,5 @@ jobs:
           cd ${{ github.workspace }}
           python -m pip install --upgrade pip --no-cache-dir
           pip install -r requirements.txt --no-cache-dir
-      - name: Create a Source Archive and a Wheel
-        run: python setup.py sdist bdist_wheel
-      - name: Publish a Python distribution to PyPI
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          twine upload dist/*
+      - name: Run Unittest
+        run: make test
